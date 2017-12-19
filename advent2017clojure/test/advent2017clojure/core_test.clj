@@ -21,4 +21,27 @@
     (is (= expected 9)))
   )
 
+(deftest day1p2test
+  (testing "two different digits"
+    (def testvector "1212")
+    (def expected (advent2017clojure.core/day1p2 testvector))
+    (is (= expected 6 )))
+  (testing "no matches"
+    (def testvector "1221")
+    (def expected (advent2017clojure.core/day1p2 testvector))
+    (is (= expected 0)))
+  (testing "2 matches"
+    (def testvector "123425")
+    (def expected (advent2017clojure.core/day1p2 testvector))
+    (is (= expected 4)))
+  (testing "additional test"
+    (def testvector "123123")
+    (def expected (advent2017clojure.core/day1p2 testvector))
+    (is (= expected 12)))
+  (testing "test with 8 diggits"
+    (def testvector "12131415")
+    (def expected (advent2017clojure.core/day1p2 testvector))
+    (is (= expected 4)))
+  )
+
   

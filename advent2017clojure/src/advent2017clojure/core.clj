@@ -15,9 +15,30 @@
   [x y] (apply + (map * x y)))
 (defn vector-of-valid-entries
   [x] (vec (map translate-true-false (vec (map = x (comparevector x))))))
-(map translate-true-false [true false])
+
 (defn day1
   "solving captcha"
   ([inputstring]
+  (let [x (inputstring-to-vector inputstring)]
+   (dot-product x (vector-of-valid-entries x)))))
+
+(defn p2-compare-vector
+  [a]
+  (let [total (count a)
+        offset (/ total 2)
+      modulo (fn [x] (mod  x total))
+      evaluation-of-index (fn [z] (nth a z))
+      shiftedindex (map modulo (take total (iterate inc offset)))  ]
+  (vec (map evaluation-of-index shiftedindex))))
+
+(defn vector-of-valid-entries-with-offset
+  [x] (vec (map translate-true-false (vec (map = x (p2-compare-vector x))))))
+
+(defn day1p2
+  "solving captcha with offset n/2"
+  ([inputstring]
   (def x (inputstring-to-vector inputstring))
-   (dot-product x (vector-of-valid-entries x))))
+   (dot-product x (vector-of-valid-entries-with-offset x))))
+
+
+
